@@ -9,18 +9,20 @@ jobs:
   build:
     name: 'Build and Push'
     runs-on: ubuntu-latest
-    strategy:
-        matrix:
-          node: [16,18,20]
+    # strategy:
+    #     matrix:
+    #       node: [16,18,20]
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
        
-      - name: Node.js | ${{ matrix.node }}
+      # - name: Node.js | ${{ matrix.node }}
+      - name: Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node }}
+          # node-version: ${{ matrix.node }}
+          node-version: 18
           cache: 'npm'
       - run: npm install
       - run: npm run test
@@ -37,8 +39,14 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
 
-      - name: Build Docker Image
-        run: docker build -t pedro4r/docker-ci-api:${{ steps.generate_tag.outputs.sha }} .
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          tags: pedro4r/docker-ci-api:${{ steps.generate_tag.outputs.sha }}, pedro4r/docker-ci-api:latest
 
-      - name: Push image
-        run: docker push pedro4r/docker-ci-api:${{ steps.generate_tag.outputs.sha }}
+      # - name: Build Docker Image
+      #   run: docker build -t pedro4r/docker-ci-api:${{ steps.generate_tag.outputs.sha }} .
+
+      # - name: Push image
+      #   run: docker push pedro4r/docker-ci-api:${{ steps.generate_tag.outputs.sha }}
