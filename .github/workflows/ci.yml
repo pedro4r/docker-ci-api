@@ -31,5 +31,14 @@ jobs:
          SHA=$(echo $GITHUB_SHA | head -c7)
          echo "sha=$SHA" >> $GITHUB_OUTPUT
 
+      - name: Login to DockerHub
+        run: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+
       - name: Build Docker Image
-        run: docker build -t docker-ci-api:${{ steps.generate_tag.outputs.sha }} .
+        run: docker build -t pedro4r/docker-ci-api:${{ steps.generate_tag.outputs.sha }} .
+
+      - name: Push image
+        run: docker push pedro4r/docker-ci-api:${{ steps.generate_tag.outputs.sha }}
