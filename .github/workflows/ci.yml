@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+
 permissions:
   id-token: write
   contents: read
@@ -57,6 +58,14 @@ jobs:
       #   with:
       #     push: true
       #     tags: pedro4r/docker-ci-api:${{ steps.generate_tag.outputs.sha }}, pedro4r/docker-ci-api:latest
+
+      - name: Build Docker Image
+        env:
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          TAG: ${{ steps.generate_tag.outputs.sha }}
+        run: |
+          docker build -t $REGISTRY/rocketseat-ci:$TAG .
+          docker push $REGISTRY/rocketseat-ci:$TAG
 
       # - name: Build Docker Image
       #   run: docker build -t pedro4r/docker-ci-api:${{ steps.generate_tag.outputs.sha }} .
