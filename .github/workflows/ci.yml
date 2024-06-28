@@ -7,7 +7,7 @@ on:
 
 permissions:
   id-token: write
-  contents: read
+  contents: write
 
 jobs:
   build:
@@ -30,7 +30,7 @@ jobs:
           cache: 'npm'
       - run: npm install
       - run: npm run test
-      
+
       - name: Semantic release
         uses: cycjimmy/semantic-release-action@v4
         env:
