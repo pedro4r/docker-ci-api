@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/pedro4r/docker-ci-api/compare/v1.0.0...v1.0.1) (2024-06-28)
+
+
+### Bug Fixes
+
+* configure semirelease 3 ([8c4732f](https://github.com/pedro4r/docker-ci-api/commit/8c4732f7000abf2cc424e98b6545d2efd207f2bf))
+
 # 1.0.0 (2024-06-28)
 
 
