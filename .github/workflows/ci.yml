@@ -84,7 +84,7 @@ jobs:
           wait-for-service-stability-seconds: 180
 
       - name: App Runner URL
-         run: echo "App Runner running... ${{ steps.deploy-app-runner.outputs.service-url }}"
+        run: echo "App Runner running... ${{ steps.deploy-app-runner.outputs.service-url }}"
 
       # - name: Build Docker Image
       #   run: docker build -t pedro4r/docker-ci-api:${{ steps.generate_tag.outputs.sha }} .
