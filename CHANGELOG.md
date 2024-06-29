@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/pedro4r/docker-ci-api/compare/v1.0.2...v1.0.3) (2024-06-29)
+
+
+### Bug Fixes
+
+* ci variables 2 ([1ce7734](https://github.com/pedro4r/docker-ci-api/commit/1ce7734cc020548a1a94d95eb009b30db4c49619))
+
 ## [1.0.2](https://github.com/pedro4r/docker-ci-api/compare/v1.0.1...v1.0.2) (2024-06-29)
 
 
